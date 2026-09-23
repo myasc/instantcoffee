@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Many Ways We Drink Coffee — Notes</title>
+
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+       CSS Variables & Design Tokens
+       ========================================================================== */
+        :root {
+            --i: #201b17;
+            /* Primary ink */
+            --m: #756c64;
+            /* Muted ink */
+            --p: #f5f0e8;
+            /* Paper background */
+            --c: #fbf8f2;
+            /* Card background */
+            --a: #9a4f2d;
+            /* Accent terracotta */
+            --l: #d9d0c4;
+            /* Border / line */
+            --d: #28211c;
+            /* Dark mode / contrast background */
+        }
+
+        /* ==========================================================================
+       Base Styles & Reset
+       ========================================================================== */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--p);
+            color: var(--i);
+            font-family: Georgia, serif;
+            line-height: 1.65;
+        }
+
+        /* ==========================================================================
+       Layout Utilities
+       ========================================================================== */
+        .w {
+            max-width: 1180px;
+            margin: auto;
+            padding: 0 28px;
+        }
+
+        /* ==========================================================================
+       Typography Utilities
+       ========================================================================== */
+        .ey {
+            font: 600 12px 'Inter', Arial, sans-serif;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--a);
+            margin-bottom: 28px;
+        }
+
+        .num {
+            font: 600 13px 'Inter', Arial, sans-serif;
+            color: var(--a);
+            letter-spacing: 0.12em;
+        }
+
+        .tag {
+            font: 700 11px 'Inter', Arial, sans-serif;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            color: var(--a);
+        }
+
+        .role {
+            font: 600 11px 'Inter', Arial, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.11em;
+            color: var(--a);
+            margin-top: 8px;
+        }
+
+        .intro {
+            font-size: 22px;
+            max-width: 720px;
+            color: #554c45;
+        }
+
+        .intro-center {
+            margin: auto;
+        }
+
+        .intro-honorable {
+            margin: 42px auto 0;
+            text-align: center;
+            max-width: 780px;
+        }
+
+        .quote {
+            font-size: clamp(30px, 4vw, 52px);
+            line-height: 1.1;
+            max-width: 920px;
+            margin: 80px auto;
+            color: var(--d);
+        }
+
+        .quote::before {
+            content: '“';
+            color: var(--a);
+        }
+
+        .pull {
+            font-style: italic;
+            color: #302923;
+        }
+
+        /* ==========================================================================
+       Header
+       ========================================================================== */
+        header {
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--l);
+        }
+
+        h1 {
+            font-size: clamp(64px, 10vw, 138px);
+            line-height: 0.88;
+            letter-spacing: -0.065em;
+            font-weight: 500;
+            max-width: 980px;
+            margin: 0;
+        }
+
+        .dek {
+            font-size: clamp(21px, 2.3vw, 31px);
+            line-height: 1.25;
+            max-width: 760px;
+            margin: 44px 0 0;
+            color: #4f463f;
+        }
+
+        .meta {
+            display: flex;
+            gap: 30px;
+            margin-top: 70px;
+            color: var(--m);
+            font: 13px 'Inter', Arial, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* ==========================================================================
+       Sections & Section Headers
+       ========================================================================== */
+        section {
+            padding: 110px 0;
+            border-bottom: 1px solid var(--l);
+        }
+
+        .head {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            margin-bottom: 70px;
+        }
+
+        h2 {
+            font-size: clamp(42px, 6vw, 76px);
+            line-height: 0.98;
+            letter-spacing: -0.045em;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        /* ==========================================================================
+       Cards Grid (Section 02)
+       ========================================================================== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .card {
+            background: var(--c);
+            border: 1px solid var(--l);
+            padding: 34px;
+            min-height: 270px;
+        }
+
+        .card h3 {
+            font-size: 35px;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin: 18px 0 14px;
+            font-weight: 500;
+        }
+
+        .card p {
+            margin: 0;
+            color: #514941;
+            font-size: 17px;
+        }
+
+        /* ==========================================================================
+       Person Profiles (Sections 03-07)
+       ========================================================================== */
+        .person {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 34px;
+            padding: 38px 0;
+            border-top: 1px solid var(--l);
+        }
+
+        .person:first-child {
+            border-top: 0;
+        }
+
+        .name {
+            font-size: 32px;
+            letter-spacing: -0.03em;
+        }
+
+        .person h3 {
+            font-size: 28px;
+            line-height: 1.1;
+            margin: 0 0 12px;
+            font-weight: 500;
+        }
+
+        .person p {
+            font-size: 17px;
+            color: #514941;
+            max-width: 760px;
+            margin: 0 0 14px;
+        }
+
+        /* ==========================================================================
+       Dark Section Variant (Section 05)
+       ========================================================================== */
+        .dark {
+            background: var(--d);
+            color: #f5eee4;
+        }
+
+        .dark .num,
+        .dark .role {
+            color: #d78a62;
+        }
+
+        .dark .intro,
+        .dark .person p {
+            color: #c9bfb5;
+        }
+
+        .dark .person {
+            border-color: #51463e;
+        }
+
+        .dark .pull {
+            color: #fff7ef;
+        }
+
+        /* ==========================================================================
+       Truths Grid (Section 08)
+       ========================================================================== */
+        .truths {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: #51463e;
+            border: 1px solid #51463e;
+        }
+
+        .truth {
+            padding: 34px;
+            background: var(--d);
+            min-height: 210px;
+        }
+
+        .truth b {
+            display: block;
+            font-size: 22px;
+            line-height: 1.15;
+            margin-bottom: 15px;
+            font-weight: 500;
+            color: #9a4f2d;
+        }
+
+        .truth span {
+            color: #c9bfb5;
+            font-size: 16px;
+        }
+
+        /* ==========================================================================
+       Closing Section & Footer
+       ========================================================================== */
+        .closing {
+            padding: 140px 0 170px;
+            text-align: center;
+        }
+
+        .closing h2 {
+            max-width: 850px;
+            margin: auto;
+            font-size: clamp(52px, 8vw, 104px);
+        }
+
+        .closing p {
+            font-size: 21px;
+            color: #645a52;
+            max-width: 690px;
+            margin: 40px auto;
+        }
+
+        footer {
+            padding: 28px 28px 50px;
+            color: var(--m);
+            font: 12px 'Inter', Arial, sans-serif;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--l);
+        }
+
+        /* ==========================================================================
+       Responsive Media Queries
+       ========================================================================== */
+        @media (max-width: 800px) {
+            header {
+                min-height: 80vh;
+            }
+
+            .w {
+                padding: 0 20px;
+            }
+
+            footer {
+                padding: 28px 20px 50px;
+            }
+
+            section {
+                padding: 75px 0;
+            }
+
+            .head {
+                grid-template-columns: 1fr;
+                gap: 22px;
+                margin-bottom: 45px;
+            }
+
+            .grid,
+            .truths {
+                grid-template-columns: 1fr;
+            }
+
+            .person {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .name {
+                font-size: 27px;
+            }
+
+            .meta {
+                flex-wrap: wrap;
+                margin-top: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ========================================================================
+       Header / Hero
+       ======================================================================== -->
+    <header>
+        <div class="w">
+            <div class="ey">Notes on coffee, people &amp; the rituals</div>
+            <h1>The Many Ways<br>We Drink Coffee.</h1>
+            <p class="dek">
+                We went looking for coffee habits. What we found were little rituals, shortcuts,
+                obsessions, routines, rewards and a surprising number of very personal definitions
+                of what counts as a “good cup.”
+            </p>
+            <div class="meta">
+                <span>Thanks to the people who shared theirs</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ======================================================================
+         01 — The Question
+         ====================================================================== -->
+        <section id="the-question">
+            <div class="w">
+                <div class="head">
+                    <div class="num">01 — THE QUESTION</div>
+                    <div>
+                        <h2>What is coffee actually doing for you?</h2>
+                        <p class="intro">
+                            Not what should it do. Not what coffee people on the internet say it does.
+                            What happens in the few minutes before someone makes a cup, buys one,
+                            or decides they absolutely need one?
+                        </p>
+                    </div>
+                </div>
+
+                <p class="quote">There isn't one way to be a coffee person.</p>
+
+                <p class="intro intro-center">
+                    For some, coffee is the first switch of the day. For some, it is fuel before a run.
+                    For some, the brewing process deserves scales, temperatures and four carefully timed pours.
+                    For others, coffee is an iced latte, a café, a conversation or simply the fastest
+                    available route to being awake.
+                </p>
+
+                <p class="intro intro-honorable">
+                    <strong>And here are some honourable mentions.</strong><br>
+                </p>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         02 — Five Ways In
+         ====================================================================== -->
+        <section id="five-ways-in">
+            <div class="w">
+                <div class="head">
+                    <div class="num">02 — FIVE WAYS IN</div>
+                    <div>
+                        <h2>Five kinds of coffee moments.</h2>
+                        <p class="intro">
+                            These aren't boxes. Most people move between them depending on the day.
+                            Think of them as different jobs a cup can have.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <article class="card">
+                        <div class="tag">The Starter</div>
+                        <h3>“The day begins when the coffee does.”</h3>
+                        <p>Coffee is part of the architecture of the morning. The exact cup matters because the ritual
+                            matters.</p>
+                    </article>
+
+                    <article class="card">
+                        <div class="tag">The Performer</div>
+                        <h3>“Give me caffeine. I have things to do.”</h3>
+                        <p>Coffee is a functional button: wake up, work, run, gym. The cup does not need a ceremony to
+                            do its job.</p>
+                    </article>
+
+                    <article class="card">
+                        <div class="tag">The Explorer</div>
+                        <h3>“What happens if I change the grind?”</h3>
+                        <p>Beans, extraction, processing and equipment are part of the fun. Sometimes the coffee is the
+                            hobby.</p>
+                    </article>
+
+                    <article class="card">
+                        <div class="tag">The Bridge</div>
+                        <h3>“I like good coffee. I just don’t always have 15 minutes.”</h3>
+                        <p>A middle ground: people whose taste has moved ahead of their willingness or ability to brew
+                            every time.</p>
+                    </article>
+
+                    <article class="card">
+                        <div class="tag">The Indulger</div>
+                        <h3>“Let’s get a cold coffee.”</h3>
+                        <p>Coffee is pleasure, atmosphere, refreshment, a treat, or a reason to go somewhere. Sometimes
+                            all of those at once.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         03 — The Starters
+         ====================================================================== -->
+        <section id="the-starters">
+            <div class="w">
+                <div class="head">
+                    <div class="num">03 — THE STARTERS</div>
+                    <div>
+                        <h2>Sattu &amp; Chaitanya</h2>
+                        <p class="intro">
+                            For some people, coffee is not an optional part of the morning.
+                            It is the thing that makes the morning feel assembled.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="person">
+                    <div>
+                        <div class="name">Sattu</div>
+                        <div class="role">The Starter</div>
+                    </div>
+                    <div>
+                        <h3>Thirty to forty minutes after waking, coffee arrives.</h3>
+                        <p>
+                            Sattu waits before his first cup, gets ready for the day, and then reaches for
+                            Davidoff 57. He calls it an “amazing kickstart.” He knows exactly how he likes
+                            it: bitter enough, chocolatey, smooth.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="person">
+                    <div>
+                        <div class="name">Chaitanya</div>
+                        <div class="role">The Starter</div>
+                    </div>
+                    <div>
+                        <h3>For Chaitanya, coffee is simply part of the morning.</h3>
+                        <p>
+                            His usual is black Nescafé, recently upgraded to the Roastery version. The ritual itself,
+                            however, remains beautifully uncomplicated:
+                            boil water, add coffee, stir, done.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         04 — The Performers
+         ====================================================================== -->
+        <section id="the-performers">
+            <div class="w">
+                <div class="head">
+                    <div class="num">04 — THE PERFORMERS</div>
+                    <div>
+                        <h2>Shivam, Pranjul &amp; Rishab</h2>
+                        <p class="intro">
+                            Different coffee preferences. Similar underlying principle:
+                            sometimes coffee’s most important job is to get you somewhere.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="person">
+                    <div>
+                        <div class="name">Shivam</div>
+                        <div class="role">The Performer</div>
+                    </div>
+                    <div>
+                        <h3>Wake up. Coffee. Gym.</h3>
+                        <p>
+                            Shivam’s morning coffee is almost comically efficient. Coffee costs around
+                            ₹10, takes essentially no time, and exists to prepare him for the workout.
+                            He likes the “perfect bitter” taste and has little interest in making the
+                            occasion more complicated.
+                        </p>
+                        <p class="pull">A coffee routine with the efficiency of a push notification.</p>
+                    </div>
+                </div>
+
+                <div class="person">
+                    <div>
+                        <div class="name">Pranjul</div>
+                        <div class="role">The Performer</div>
+                    </div>
+                    <div>
+                        <h3>Caffeine first. Brewing method second.</h3>
+                        <p>
+                            Pranjul reaches for coffee when the caffeine gap starts to become noticeable often
+                            immediately after waking. At home, the moka pot gives him the stronger cup he prefers.
+                            When travelling, instant coffee is everywhere, so the compromise is easy.
+                        </p>
+                        <p class="pull">The moka pot is the preference. Instant is the contingency plan.</p>
+                    </div>
+                </div>
+
+                <div class="person">
+                    <div>
+                        <div class="name">Rishab</div>
+                        <div class="role">The Performer / The Explorer</div>
+                    </div>
+                    <div>
+                        <h3>He makes 18-hour cold brew. He also has an emergency mode.</h3>
+                        <p>
+                            Rishab prepares Araku cold brew in a 1:10–1:12 ratio for 18 hours, in a big batch.
+                            But when his own brew is not available, an iced Americano becomes a tool:
+                            less-defined taste, but the caffeine still does its job.
+                        </p>
+                        <p class="pull">The same person can be a coffee romantic at home and a caffeine realist outside.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         05 — The Explorers
+         ====================================================================== -->
+        <section id="the-explorers" class="dark">
+            <div class="w">
+                <div class="head">
+                    <div class="num">05 — THE EXPLORERS</div>
+                    <div>
+                        <h2>Ankur, Kakkar &amp; Sameeha</h2>
+                        <p class="intro">
+                            For these three, coffee becomes something to learn, tune, compare
+                            and sometimes just enjoy very, very slowly.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="person">
+                    <div>
+                        <div class="name">Ankur</div>
+                        <div class="role">The Explorer</div>
+                    </div>
+                    <div>
+                        <h3>Weekdays have coffee. Weekends have coffee events.</h3>
+                        <p>
+                            V60, 18 grams, measured temperature, four pours, timing, rest.
+                            Ankur’s weekday coffee is streamlined; weekends are allowed to stretch out.
+                            Washed coffees make sense when the week is moving. Naturals belong to slower
+                            days, when there is time to talk and enjoy the process.
+                        </p>
+                        <p class="pull">Some people have a weekend. Ankur has a weekend coffee protocol.</p>
+                    </div>
+                </div>
+
+                <div class="person">
+                    <div>
+                        <div class="name">Kakkar</div>
+                        <div class="role">The Explorer</div>
+                    </div>
+                    <div>
+                        <h3>Curious, but not trying to become a coffee sommelier.</h3>
+                        <p>
+                            Kakkar uses a moka pot and grinder, pays attention to temperature and avoids
+                            burning the coffee. He knows specialty coffee can taste different, and wants
+                            to understand washed versus natural versus fermented but has no desire to start
+                            identifying “cheesecake notes”.
+                        </p>
+                        <p class="pull">A healthy reminder that you can care about coffee without making coffee your
+                            entire personality.</p>
+                    </div>
+                </div>
+
+                <div class="person">
+                    <div>
+                        <div class="name">Sameeha</div>
+                        <div class="role">The Explorer</div>
+                    </div>
+                    <div>
+                        <h3>Espresso in the morning. Guava cold brew when the mood strikes.</h3>
+                        <p>
+                            Sameeha uses an espresso machine, WDT and extraction time to get her morning shots right.
+                            Then there is the other side of coffee: flavoured cold brews, maple, sea salt,
+                            vanilla, caramel.
+                        </p>
+                        <p class="pull">The espresso machine says precision. The guava cold brew says: let’s have some
+                            fun.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         06 — The Bridge
+         ====================================================================== -->
+        <section id="the-bridge">
+            <div class="w">
+                <div class="head">
+                    <div class="num">06 — THE BRIDGE</div>
+                    <div>
+                        <h2>Arnav &amp; Rishita</h2>
+                        <p class="intro">
+                            Perhaps the most interesting place to be: wanting better coffee
+                            without wanting every part of the work that can come with it.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="person">
+                    <div>
+                        <div class="name">Arnav</div>
+                        <div class="role">The Bridge / The Explorer</div>
+                    </div>
+                    <div>
+                        <h3>V60 in the morning. Bru after a nap.</h3>
+                        <p>
+                            Arnav owns an AeroPress, espresso machine and V60 setup. He can carefully weigh
+                            18g of beans and control his pour. But if he needs coffee quickly, instant wins
+                            because the V60 takes time. He keeps instant coffee at home for exactly these moments.
+                        </p>
+                        <p class="pull">Having three coffee machines does not make you immune to wanting coffee right
+                            now.</p>
+                    </div>
+                </div>
+
+                <div class="person">
+                    <div>
+                        <div class="name">Rishita</div>
+                        <div class="role">The Bridge / The Indulger</div>
+                    </div>
+                    <div>
+                        <h3>Davidoff at home. Blue Tokai iced latte at the office.</h3>
+                        <p>
+                            At home, Rishita dissolves Davidoff in a little warm water, gets it frothy,
+                            pours it over ice and adds milk. At the office, the ritual becomes a Blue Tokai
+                            iced latte. She wants more high-quality options she can make at home without
+                            turning coffee into a project.
+                        </p>
+                        <p class="pull">The café version is the experience. The home version is the convenience. She
+                            wants the gap between them to shrink.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         07 — The Indulgers
+         ====================================================================== -->
+        <section id="the-indulgers">
+            <div class="w">
+                <div class="head">
+                    <div class="num">07 — THE INDULGERS</div>
+                    <div>
+                        <h2>Moushami &amp; Swatik</h2>
+                        <p class="intro">
+                            Here coffee behaves less like a brewing discipline and more like a drink worth going out
+                            for.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="person">
+                    <div>
+                        <div class="name">Moushami</div>
+                        <div class="role">The Indulger</div>
+                    </div>
+                    <div>
+                        <h3>Sometimes coffee is simply the thing you feel like having.</h3>
+                        <p>
+                            Moushami's coffee doesn't need to wake her up, improve her focus, or begin a carefully
+                            constructed morning ritual. The particular cup might be too milky, too sweet, or not quite
+                            coffee forward enoughand she'll notice. But coffee can still belong in the same world as
+                            the other little refreshments we reach for during the day: something cold, comforting, and
+                            enjoyable.
+                        </p>
+                        <p class="pull">Coffee doesn't always have to do something. Sometimes it just has to feel good.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="person">
+                    <div>
+                        <div class="name">Swatik</div>
+                        <div class="role">The Indulger / The Performer</div>
+                    </div>
+                    <div>
+                        <h3>₹2 before the run. ₹340 for the café version.</h3>
+                        <p>
+                            Swatik’s home coffee is a ₹2 Nescafé sachet before a 5km run. Fast, portable,
+                            effective. But coffee at a café is something else: hazelnut frappe, extra espresso,
+                            aroma, taste and vibe. Coffee is also the drink he reaches for when he wants to
+                            sit somewhere.
+                        </p>
+                        <p class="pull">The pre-workout coffee and the café coffee may share a name. They are doing
+                            completely different jobs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         08 — Things We Learned
+         ====================================================================== -->
+        <section id="things-we-learned">
+            <div class="w">
+                <div class="head">
+                    <div class="num">08 — THINGS WE LEARNED</div>
+                    <div>
+                        <h2>A few coffee truths.</h2>
+                        <p class="intro">Not laws. Not statistics. Just patterns that kept appearing in people’s
+                            stories.</p>
+                    </div>
+                </div>
+
+                <div class="truths">
+                    <div class="truth">
+                        <b>Good coffee is contextual.</b>
+                        <span>A person can care deeply about taste at home and care about nothing except caffeine when
+                            they are late.</span>
+                    </div>
+                    <div class="truth">
+                        <b>Convenience is not the opposite of quality.</b>
+                        <span>Several people want better coffee precisely because they do not want brewing equipment,
+                            complicated preparation or extra time.</span>
+                    </div>
+                    <div class="truth">
+                        <b>The ritual can be the product.</b>
+                        <span>For some, weighing beans and pouring water is not work around the coffee. It is part of
+                            the reason for the coffee.</span>
+                    </div>
+                    <div class="truth">
+                        <b>“Coffee” can mean wildly different drinks.</b>
+                        <span>Black instant, V60, espresso, moka pot, cold brew, iced latte and hazelnut frappe all
+                            appeared in these stories.</span>
+                    </div>
+                    <div class="truth">
+                        <b>A bad coffee does not always get abandoned.</b>
+                        <span>Sometimes you drink it because you paid for it. Sometimes because you need the caffeine.
+                            Sometimes because, well, it is already in your hand.</span>
+                    </div>
+                    <div class="truth">
+                        <b>People know more than they think.</b>
+                        <span>Some people talk in extraction times and processing methods. Others simply know exactly
+                            what tastes right to them. Both are useful kinds of knowledge.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+         09 — Thank You / Closing
+         ====================================================================== -->
+        <section id="closing" class="closing">
+            <div class="w">
+                <div class="ey">09 — THANK YOU</div>
+                <h2>Behind every cup is a person trying to make a moment work.</h2>
+                <p>
+                    Thank you for letting us into one of yours. Whether coffee is your ritual, your fuel,
+                    your hobby, your treat, your excuse to meet someone or just something you occasionally
+                    drink we think the little details are worth paying attention to.
+                </p>
+                <p>
+                    And yes, we noticed the difference between ₹2 coffee and ₹900 coffee.
+                    We also noticed that both can be exactly right.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========================================================================
+       Footer
+       ======================================================================== -->
+    <footer class="w">
+        <span>COFFEE FIELD NOTES</span>
+        <span>Made from real conversations, with gratitude.</span>
+    </footer>
+</body>
+
+</html>
